@@ -11,10 +11,10 @@ Gestisce richieste HTTP - Parla con il db
 Browser ⟶ GET /piatti ⟶ Flask ⟶ SELECT * FROM piatti ⟶ MySQL
 Risposta: MySQL → Flask → HTML/JSON → Browser
 
-# Funzionamento MySql (DBSM)
+# Funzionamento MySql Workbench (DBSM)
 
-Db in locale --> condivsione del file .sql
-
+Db in locale --> modifica del file init_db.sql --> run script sql su MySql Workbench
+In seguito creazione dello schema...
 
 
 # Frontend 
