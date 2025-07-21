@@ -16,9 +16,20 @@ Risposta: MySQL → Flask → HTML/JSON → Browser
 Db in locale --> modifica del file init_db.sql --> run script sql su MySql Workbench
 In seguito creazione dello schema...
 
+--Progettazione db
+--Ingrediente(nome/unità di misura)
+
 
 # Frontend 
 
 Flask genera pagine HTML dal server.
 Tu crei file .html in una cartella templates/.
 Dentro i file .html puoi usare Jinja2, che ti permette di inserire variabili Python nel codice HTML.
+
+--Gestione utenza ##### --Aggiungere cambio password e recupera password e validazione email ------
+
+--Pagina principale (sx lista di tutti i piatti disponibili) (dx calendario ) 
+--Aggiunta piatto (se non c'è l'ingrediente giusto lo aggiungo)
+--Pagina stats con filtri su proteine/carbo giornalieri o settimanali (calcolo quantità x percentuale di proteine/carbo)
+
+

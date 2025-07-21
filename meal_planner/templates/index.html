@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8" />
+    <title>Home</title>
+</head>
+<body>
+    <h1>Benvenuto utente ID: {{ user_id }}!</h1>
+    <!-- Esempio da inserire in index.html -->
+    <h2>Piatti disponibili</h2>
+    <ul>
+    {% for piatto in piatti %}
+        <li><strong>{{ piatto[1] }}</strong>: {{ piatto[2] }}</li>
+    {% endfor %}
+    </ul>
+    <a href="{{ url_for('logout') }}">Logout</a>
+</body>
+</html>
