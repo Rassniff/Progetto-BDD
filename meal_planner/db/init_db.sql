@@ -15,14 +15,17 @@ CREATE TABLE utenti (
   password VARCHAR(255) NOT NULL
 );
 
--- Piatti disponibili
+-- Piatti disponibili : pubblici o privati
 CREATE TABLE piatti (
   id INT AUTO_INCREMENT PRIMARY KEY,
   nome VARCHAR(100) NOT NULL,
-  descrizione TEXT
+  descrizione TEXT,
+  public BOOLEAN DEFAULT 1, -- 0 = privato, 1 = pubblico
+  utente_id INT, -- NULL se pubblico creato da admin
+  FOREIGN KEY (utente_id) REFERENCES utenti(id) ON DELETE CASCADE
 );
 
--- Ingredienti (base)
+-- Ingredienti (base) : globali
 CREATE TABLE ingredienti (
   id INT AUTO_INCREMENT PRIMARY KEY,
   nome VARCHAR(100) NOT NULL,

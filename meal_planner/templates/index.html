@@ -1,18 +1,63 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8" />
-    <title>Home</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Meal Planner</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style_index.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 </head>
 <body>
-    <h1>Benvenuto utente ID: {{ user_id }}!</h1>
-    <!-- Esempio da inserire in index.html -->
-    <h2>Piatti disponibili</h2>
-    <ul>
-    {% for piatto in piatti %}
-        <li><strong>{{ piatto[1] }}</strong>: {{ piatto[2] }}</li>
-    {% endfor %}
-    </ul>
+  <header>
+    <h1>Meal Planner</h1>
+    <p>Benvenuto, utente ID: {{ user_id }}!</p>
     <a href="{{ url_for('logout') }}">Logout</a>
+  </header>
+
+  <main>
+    <section class="piatti">
+      <h2>Piatti disponibili</h2>
+      <ul id="piatti-list" aria-label="Lista piatti disponibili">
+        {% for piatto in piatti %}
+          <li draggable="true" data-id="{{ piatto[0] }}" tabindex="0">{{ piatto[1] }}</li>
+        {% endfor %}
+      </ul>
+    </section>
+
+    <section class="planner">
+      <h2>Il tuo planner settimanale</h2>
+      <div class = "table-responsive">
+      <table id="calendar" aria-label="Calendario planner settimanale">
+          <thead>
+            <tr>
+              <th>Pasto / Giorno</th>
+              {% for giorno in ['Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato','Domenica'] %}
+                <th>{{ giorno }}</th>
+              {% endfor %}
+            </tr>
+          </thead>
+          <tbody>
+            {% for pasto in ['colazione','pranzo','merenda','cena'] %}
+              <tr>
+                <th>{{ pasto|capitalize }}</th>
+                {% for giorno in ['Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato','Domenica'] %}
+                  <td class="cell" data-giorno="{{ giorno }}" data-pasto="{{ pasto }}">
+                    <!-- Qui JS inserirà i piatti -->
+                  </td>
+                {% endfor %}
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>  
+      </div> 
+    </section>
+  </main>
+
+  <div id="planner-data"
+     data-planner='{{ planner | tojson | safe }}'
+     data-user-id='{{ user_id | tojson | safe }}'
+     style="display:none"></div>
+
+  <script src="{{ url_for('static', filename='js/planner.js') }}"></script>
 </body>
 </html>
