@@ -150,7 +150,18 @@ th {
   background: #c0392b;
 }
 
-
+#create-piatto-modal {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background: #fff;
+  border: 2px solid #27ae60;
+  padding: 2rem;
+  z-index: 1000;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
 /* Scroll per dispositivi mobili */
 @media (max-width: 768px) {
   main {

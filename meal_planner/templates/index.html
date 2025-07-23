@@ -17,11 +17,40 @@
   <main>
     <section class="piatti">
       <h2>Piatti disponibili</h2>
+      <button id="open-create-piatto-modal">Crea nuovo piatto</button>
+      <div id="create-piatto-modal" style="display:none;">
+        <form id="create-piatto-form">
+          <h3>Crea nuovo piatto</h3>
+          <label>Nome: <input type="text" name="nome" required></label><br>
+          <label>Descrizione: <input type="text" name="descrizione"></label><br>
+          <div id="ingredienti-list"></div>
+          
+          <button type="submit">Salva</button>
+          <button type="button" id="close-create-piatto-modal">Annulla</button>
+        </form>
+        <button type="button" id="open-add-ingrediente-modal">Aggiungi ingrediente</button>
+          <div id="add-ingrediente-modal" style="display:none;">
+            <form id="add-ingrediente-form">
+              <h4>Nuovo ingrediente</h4>
+              <label>Nome: <input type="text" name="nome" required></label><br>
+              <label>Unità di misura: <input type="text" name="unita_misura" required></label><br>
+              <label>Proteine: <input type="number" name="proteine" step="0.01" required></label><br>
+              <label>Carboidrati: <input type="number" name="carboidrati" step="0.01" required></label><br>
+              <label>Calorie: <input type="number" name="calorie" step="0.01" required></label><br>
+              <button type="submit">Salva ingrediente</button>
+              <button type="button" id="close-add-ingrediente-modal">Annulla</button>
+            </form>
+          </div>
+      </div>
       <ul id="piatti-list" aria-label="Lista piatti disponibili">
         {% for piatto in piatti %}
-          <li draggable="true" data-id="{{ piatto[0] }}" tabindex="0">{{ piatto[1] }}</li>
+          <li draggable="true" data-id="{{ piatto[0] }}" tabindex="0">
+          {{ piatto[1] }}
+          
+          </li>
         {% endfor %}
       </ul>
+      
     </section>
 
     <section class="planner">
@@ -59,5 +88,6 @@
      style="display:none"></div>
 
   <script src="{{ url_for('static', filename='js/planner.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/gestorenewpiatti.js') }}"></script>
 </body>
 </html>

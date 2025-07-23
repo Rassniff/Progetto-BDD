@@ -7,7 +7,7 @@ from config import Config
 from models.utenti import get_user_by_email, user_exists, insert_user
 from models.piatti import get_piatti
 from models.planner import get_planner_for_user, add_or_update_planner, remove_from_planner
-
+from models.ingredienti import get_ingredienti,insert_ingrediente
 app = Flask(__name__)
 app.config.from_object(Config)
 app.secret_key = app.config['SECRET_KEY']
@@ -126,6 +126,57 @@ def remove_from_planner_r():
     remove_from_planner(session['user_id'], data_giorno, pasto, piatto_id)
 
     return jsonify({'success': True})
+
+from models.ingredienti import get_ingredienti
+
+#restituisce la lista degli ingredienti
+@app.route('/ingredienti-list')
+def ingredienti_list():
+    if 'user_id' not in session:
+        return jsonify([])
+    ingredienti = get_ingredienti(session['user_id'])
+    # Restituisci solo i campi utili
+    return jsonify([
+        {
+            "id": ing[0],
+            "nome": ing[1],
+            "unita_misura": ing[2]
+        } for ing in ingredienti
+    ])
+
+# creazione di un nuovo piatto con ingredienti
+from models.piatti import insert_piatto, associa_ingredienti_al_piatto
+@app.route('/crea-piatto', methods=['POST'])
+def crea_piatto():
+    if 'user_id' not in session:
+        return jsonify({"success": False, "message": "Utente non autenticato"}), 401
+    data = request.get_json()
+    nome = data.get('nome')
+    descrizione = data.get('descrizione')
+    ingredienti = data.get('ingredienti', [])
+    if not nome or not ingredienti:
+        return jsonify({"success": False, "message": "Dati mancanti"}), 400
+    piatto_id = insert_piatto(nome, descrizione, utente_id=session['user_id'], validato=0)
+    ingredienti_quantita = [(int(ing['id']), float(ing['quantita'])) for ing in ingredienti]
+    associa_ingredienti_al_piatto(piatto_id, ingredienti_quantita)
+    return jsonify({"success": True, "piatto_id": piatto_id})
+
+#creazione nuovo ingrediente
+@app.route('/aggiungi-ingrediente', methods=['POST'])
+def aggiungi_ingrediente():
+    if 'user_id' not in session:
+        return jsonify({"success": False, "message": "Utente non autenticato"}), 401
+    data = request.get_json()
+    nome = data.get('nome')
+    unita_misura = data.get('unita_misura')
+    # Conversione sicura dei valori numerici
+    proteine = float(data.get('proteine') or 0)
+    carboidrati = float(data.get('carboidrati') or 0)
+    calorie = float(data.get('calorie') or 0)
+    if not nome or not unita_misura:
+        return jsonify({"success": False, "message": "Dati mancanti"}), 400
+    insert_ingrediente(nome, unita_misura, proteine, carboidrati, calorie, utente_id=session['user_id'], validato=0)
+    return jsonify({"success": True})
 
 # Esegui l'app
 if __name__ == '__main__':
