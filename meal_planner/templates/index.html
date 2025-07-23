@@ -24,7 +24,9 @@
           <label>Nome: <input type="text" name="nome" required></label><br>
           <label>Descrizione: <input type="text" name="descrizione"></label><br>
           <div id="ingredienti-list"></div>
-          
+          <label>Vuoi rendere visibile il tuo piatto agli altri utenti?</label><br>
+              <label><input type="radio" name="validato_piatto" value="1" required> Sì</label>
+              <label><input type="radio" name="validato_piatto" value="0" required> No</label>
           <button type="submit">Salva</button>
           <button type="button" id="close-create-piatto-modal">Annulla</button>
         </form>
@@ -37,6 +39,9 @@
               <label>Proteine: <input type="number" name="proteine" step="0.01" required></label><br>
               <label>Carboidrati: <input type="number" name="carboidrati" step="0.01" required></label><br>
               <label>Calorie: <input type="number" name="calorie" step="0.01" required></label><br>
+              <label>Vuoi rendere visibile il tuo ingrediente agli altri utenti?</label><br>
+              <label><input type="radio" name="validato_ingrediente" value="1" required> Sì</label>
+              <label><input type="radio" name="validato_ingrediente" value="0" required> No</label>
               <button type="submit">Salva ingrediente</button>
               <button type="button" id="close-add-ingrediente-modal">Annulla</button>
             </form>

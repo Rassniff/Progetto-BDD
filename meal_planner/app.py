@@ -154,9 +154,10 @@ def crea_piatto():
     nome = data.get('nome')
     descrizione = data.get('descrizione')
     ingredienti = data.get('ingredienti', [])
+    validato = data.get(('validato') or 0)  # Default a 1 se non specificato
     if not nome or not ingredienti:
         return jsonify({"success": False, "message": "Dati mancanti"}), 400
-    piatto_id = insert_piatto(nome, descrizione, utente_id=session['user_id'], validato=0)
+    piatto_id = insert_piatto(nome, descrizione, utente_id=session['user_id'], validato=validato)
     ingredienti_quantita = [(int(ing['id']), float(ing['quantita'])) for ing in ingredienti]
     associa_ingredienti_al_piatto(piatto_id, ingredienti_quantita)
     return jsonify({"success": True, "piatto_id": piatto_id})
@@ -173,9 +174,10 @@ def aggiungi_ingrediente():
     proteine = float(data.get('proteine') or 0)
     carboidrati = float(data.get('carboidrati') or 0)
     calorie = float(data.get('calorie') or 0)
+    validato = int(data.get('validato') or 0) 
     if not nome or not unita_misura:
         return jsonify({"success": False, "message": "Dati mancanti"}), 400
-    insert_ingrediente(nome, unita_misura, proteine, carboidrati, calorie, utente_id=session['user_id'], validato=0)
+    insert_ingrediente(nome, unita_misura, proteine, carboidrati, calorie, utente_id=session['user_id'], validato=validato)
     return jsonify({"success": True})
 
 # Esegui l'app

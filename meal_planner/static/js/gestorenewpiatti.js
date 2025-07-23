@@ -28,6 +28,7 @@ document.getElementById('create-piatto-form').onsubmit = function(e) {
   const nome = form.nome.value;
   const descrizione = form.descrizione.value;
   const ingredienti = [];
+  const validato = form.validato_piatto.value; 
   form.querySelectorAll('input[type="checkbox"][name="ingredienti"]:checked').forEach(cb => {
     const quantita = form[`quantita_${cb.value}`].value;
     ingredienti.push({ id: cb.value, quantita: quantita });
@@ -35,7 +36,7 @@ document.getElementById('create-piatto-form').onsubmit = function(e) {
   fetch('/crea-piatto', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ nome, descrizione, ingredienti })
+    body: JSON.stringify({ nome, descrizione, ingredienti, validato })
   })
   .then(res => res.json())
   .then(data => {
@@ -67,7 +68,8 @@ document.getElementById('add-ingrediente-form').onsubmit = function(e) {
     unita_misura: form.unita_misura.value.trim(),
     proteine: form.proteine.value !== '' ? parseFloat(form.proteine.value) : 0,
     carboidrati: form.carboidrati.value !== '' ? parseFloat(form.carboidrati.value) : 0,
-    calorie: form.calorie.value !== '' ? parseFloat(form.calorie.value) : 0
+    calorie: form.calorie.value !== '' ? parseFloat(form.calorie.value) : 0,
+    validato: form.validato_ingrediente.value
   };
   if (!data.nome || !data.unita_misura) {
     alert('Compila tutti i campi obbligatori!');
