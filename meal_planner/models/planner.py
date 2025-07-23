@@ -65,9 +65,9 @@ def get_stats_for_day(user_id, date):
     cursor = conn.cursor()
     cursor.execute("""
         SELECT
-          SUM(ingredienti.proteine * piatti_ingredienti.quantita / 100) AS tot_proteine,
-          SUM(ingredienti.carboidrati * piatti_ingredienti.quantita / 100) AS tot_carboidrati,
-          SUM(ingredienti.calorie * piatti_ingredienti.quantita / 100) AS tot_calorie
+          COALESCE (SUM(ingredienti.proteine * piatti_ingredienti.quantita / 100), 0) AS tot_proteine,
+          COALESCE (SUM(ingredienti.carboidrati * piatti_ingredienti.quantita / 100), 0) AS tot_carboidrati,
+          COALESCE (SUM(ingredienti.calorie * piatti_ingredienti.quantita / 100), 0) AS tot_calorie
         FROM planner
         JOIN piatti ON planner.piatto_id = piatti.id
         JOIN piatti_ingredienti ON piatti.id = piatti_ingredienti.piatto_id
@@ -80,21 +80,21 @@ def get_stats_for_day(user_id, date):
     return stats
 
 #somma ingredienti per statistica settimanale
-'''def get_stats_for_week(user_id, date):
+def get_stats_for_week(user_id, start_date, end_date):
     conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute("""
         SELECT
-          SUM(ingredienti.proteine * piatti_ingredienti.quantita / 100) AS tot_proteine,
-          SUM(ingredienti.carboidrati * piatti_ingredienti.quantita / 100) AS tot_carboidrati,
-          SUM(ingredienti.calorie * piatti_ingredienti.quantita / 100) AS tot_calorie
+          COALESCE (SUM(ingredienti.proteine * piatti_ingredienti.quantita / 100), 0) AS tot_proteine,
+          COALESCE (SUM(ingredienti.carboidrati * piatti_ingredienti.quantita / 100), 0) AS tot_carboidrati,
+          COALESCE (SUM(ingredienti.calorie * piatti_ingredienti.quantita / 100), 0) AS tot_calorie
         FROM planner
         JOIN piatti ON planner.piatto_id = piatti.id
         JOIN piatti_ingredienti ON piatti.id = piatti_ingredienti.piatto_id
         JOIN ingredienti ON piatti_ingredienti.ingrediente_id = ingredienti.id
         WHERE planner.utente_id = %s AND planner.data BETWEEN %s AND %s
-    """, (user_id, date))
+    """, (user_id, start_date, end_date))
     stats = cursor.fetchone()
     cursor.close()
     conn.close()
-    return stats'''
+    return stats

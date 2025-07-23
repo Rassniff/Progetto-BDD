@@ -46,13 +46,20 @@ Funzionalità come drag and drop / logica bottoni ecc in JavaScript (come nel pr
 --Rimozione di un piatto dal planner(griglia) con bottone 
 # route backend per la rimozione + file python /models/planner.py con le query + file js per bottone di rimozione + html e css(bottone)
 
---Aggiunta piatto privato (se non c'è l'ingrediente giusto lo aggiungo (globale))
+--Aggiunta piatto privato (se non c'è l'ingrediente giusto lo aggiungo (globale)) 
+# sia il piatto che ingrediente privati o pubblici in base a a una flag
 
 --Gestione indici in fase di inserimento e rimozione(opzionale)(intendo l'ordine dell'id)
 
 --Pagina stats con filtri su proteine/carbo giornalieri o settimanali (calcolo quantità x percentuale di proteine/carbo)
+# fatta giornaliera e settimanale
 
---Migliorare estetica
+--Migliorare estetica , progettarlo in orrizzontale non in verticale
+
+--bottone che toglie tutti i piatti nella griglia
+
+
+
 
 //LEGGENDA
 # Completato

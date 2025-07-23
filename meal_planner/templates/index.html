@@ -89,7 +89,11 @@
           <button id="stats-day-btn">Mostra statistiche giorno</button>
         </div>
         <div>
-          <button id="stats-week-btn">Mostra statistiche settimana</button>
+          <label for="stats-week-start">Inizio settimana:</label>
+              <input type="date" id="stats-week-start">
+              <label for="stats-week-end">Fine settimana:</label>
+              <input type="date" id="stats-week-end">
+              <button id="stats-week-btn">Mostra statistiche settimana</button>
         </div>
         <div id="stats-result"></div>
       </div>  
@@ -102,6 +106,7 @@
      data-user-id='{{ user_id | tojson | safe }}'
      style="display:none"></div>
 
+  <script src="{{ url_for('static', filename='js/set_week_dates.js') }}"></script>
   <script src="{{ url_for('static', filename='js/planner.js') }}"></script>
   <script src="{{ url_for('static', filename='js/gestorenewpiatti.js') }}"></script>
   <script src="{{ url_for('static', filename='js/gestore_stats.js') }}"></script>

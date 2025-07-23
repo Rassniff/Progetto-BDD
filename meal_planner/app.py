@@ -6,7 +6,7 @@ from config import Config
 # Importo funzioni dai modelli
 from models.utenti import get_user_by_email, user_exists, insert_user
 from models.piatti import get_piatti,insert_piatto, associa_ingredienti_al_piatto
-from models.planner import get_planner_for_user, add_or_update_planner, remove_from_planner,get_stats_for_day
+from models.planner import get_planner_for_user, add_or_update_planner, remove_from_planner,get_stats_for_day,get_stats_for_week
 from models.ingredienti import get_ingredienti,insert_ingrediente
 
 app = Flask(__name__)
@@ -188,12 +188,12 @@ def stats_day():
     stats = get_stats_for_day(session['user_id'], date)
     return jsonify({
         "success": True,
-        "proteine": stats[0] or 0,
-        "carboidrati": stats[1] or 0,
-        "calorie": stats[2] or 0
+        "proteine": float(stats[0]) if stats[0] is not None else 0,
+        "carboidrati": float(stats[1]) if stats[1] is not None else 0,
+        "calorie": float(stats[2]) if stats[2] is not None else 0
     })
 
-'''
+
 @app.route('/stats-week', methods=['GET'])
 def stats_week():
     if 'user_id' not in session:
@@ -202,14 +202,14 @@ def stats_week():
     end_date = request.args.get('end')      # formato 'YYYY-MM-DD'
     if not start_date or not end_date:
         return jsonify({"success": False, "message": "Date mancanti"}), 400
-    stats = get_stats_for_week(session['user_id'], (start_date, end_date))
+    stats = get_stats_for_week(session['user_id'], start_date, end_date)
     return jsonify({
         "success": True,
-        "proteine": stats[0] or 0,
-        "carboidrati": stats[1] or 0,
-        "calorie": stats[2] or 0
+        "proteine": float(stats[0]) if stats[0] is not None else 0,
+        "carboidrati": float(stats[1]) if stats[1] is not None else 0,
+        "calorie": float(stats[2]) if stats[2] is not None else 0
     }) 
-'''
+
 
 # Esegui l'app
 if __name__ == '__main__':
