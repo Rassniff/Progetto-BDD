@@ -6,7 +6,7 @@ def get_piatti(user_id):
     cursor.execute("""
         SELECT id, nome, descrizione
         FROM piatti
-        WHERE public = 1 OR utente_id = %s
+        WHERE validato = 1 OR utente_id = %s
     """, (user_id,))
     piatti = cursor.fetchall()
     cursor.close()
