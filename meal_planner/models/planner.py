@@ -80,7 +80,7 @@ def get_stats_for_day(user_id, date):
     return stats
 
 #somma ingredienti per statistica settimanale
-def get_stats_for_week(user_id, date):
+'''def get_stats_for_week(user_id, date):
     conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute("""
@@ -97,4 +97,4 @@ def get_stats_for_week(user_id, date):
     stats = cursor.fetchone()
     cursor.close()
     conn.close()
-    return stats
+    return stats'''

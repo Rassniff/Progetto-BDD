@@ -13,9 +13,6 @@ def get_piatti(user_id):
     conn.close()
     return piatti
 
-from . import get_db_connection
-from .ingredienti import get_ingredienti
-
 def insert_piatto(nome, descrizione, utente_id=None, validato=1):
     conn = get_db_connection()
     cursor = conn.cursor()

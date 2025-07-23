@@ -73,7 +73,7 @@ document.querySelectorAll('.giorno-header').forEach(cell => {
     giornoSelezionato = this.getAttribute('data-giorno');
     // Trova la prima cella del giorno selezionato e prendi la data reale
     const primaCella = document.querySelector(`.cell[data-giorno="${giornoSelezionato}"]`);
-    giornoDataSelezionata = primaCella ? primaCella.getAttribute('data-data') : null;
+    giornoDataSelezionata = getDateForWeekday(giornoSelezionato);
   });
 });
 
