@@ -1,3 +1,10 @@
+.giorno-header {
+  cursor: pointer;
+}
+.giorno-header.selected-cell {
+  background-color: #ffe082 !important;
+  outline: 2px solid #ff9800;
+}
 /* Reset base */
 * {
   box-sizing: border-box;
@@ -100,6 +107,15 @@ ul#piatti-list li:active {
 .cell.dragover {
   background-color: #d1f2eb;
   border-color: #16a085;
+}
+
+.cell {
+  cursor: pointer;
+}
+
+.selected-cell {
+  background-color: #ffe082 !important;
+  outline: 2px solid #ff9800;
 }
 
 table {

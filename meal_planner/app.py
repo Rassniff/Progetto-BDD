@@ -5,9 +5,10 @@ from config import Config
 
 # Importo funzioni dai modelli
 from models.utenti import get_user_by_email, user_exists, insert_user
-from models.piatti import get_piatti
-from models.planner import get_planner_for_user, add_or_update_planner, remove_from_planner
+from models.piatti import get_piatti,insert_piatto, associa_ingredienti_al_piatto
+from models.planner import get_planner_for_user, add_or_update_planner, remove_from_planner,get_stats_for_day, get_stats_for_week
 from models.ingredienti import get_ingredienti,insert_ingrediente
+
 app = Flask(__name__)
 app.config.from_object(Config)
 app.secret_key = app.config['SECRET_KEY']
@@ -127,7 +128,7 @@ def remove_from_planner_r():
 
     return jsonify({'success': True})
 
-from models.ingredienti import get_ingredienti
+
 
 #restituisce la lista degli ingredienti
 @app.route('/ingredienti-list')
@@ -145,7 +146,7 @@ def ingredienti_list():
     ])
 
 # creazione di un nuovo piatto con ingredienti
-from models.piatti import insert_piatto, associa_ingredienti_al_piatto
+
 @app.route('/crea-piatto', methods=['POST'])
 def crea_piatto():
     if 'user_id' not in session:
@@ -179,6 +180,39 @@ def aggiungi_ingrediente():
         return jsonify({"success": False, "message": "Dati mancanti"}), 400
     insert_ingrediente(nome, unita_misura, proteine, carboidrati, calorie, utente_id=session['user_id'], validato=validato)
     return jsonify({"success": True})
+
+
+
+@app.route('/stats-day', methods=['GET'])
+def stats_day():
+    if 'user_id' not in session:
+        return jsonify({"success": False, "message": "Utente non autenticato"}), 401
+    date = request.args.get('date')  # formato 'YYYY-MM-DD'
+    if not date:
+        return jsonify({"success": False, "message": "Data mancante"}), 400
+    stats = get_stats_for_day(session['user_id'], date)
+    return jsonify({
+        "success": True,
+        "proteine": stats[0] or 0,
+        "carboidrati": stats[1] or 0,
+        "calorie": stats[2] or 0
+    })
+
+@app.route('/stats-week', methods=['GET'])
+def stats_week():
+    if 'user_id' not in session:
+        return jsonify({"success": False, "message": "Utente non autenticato"}), 401
+    start_date = request.args.get('start')  # formato 'YYYY-MM-DD'
+    end_date = request.args.get('end')      # formato 'YYYY-MM-DD'
+    if not start_date or not end_date:
+        return jsonify({"success": False, "message": "Date mancanti"}), 400
+    stats = get_stats_for_week(session['user_id'], (start_date, end_date))
+    return jsonify({
+        "success": True,
+        "proteine": stats[0] or 0,
+        "carboidrati": stats[1] or 0,
+        "calorie": stats[2] or 0
+    })
 
 # Esegui l'app
 if __name__ == '__main__':

@@ -66,7 +66,7 @@
             <tr>
               <th>Pasto / Giorno</th>
               {% for giorno in ['Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato','Domenica'] %}
-                <th>{{ giorno }}</th>
+                <th class="giorno-header" data-giorno="{{ giorno }}">{{ giorno }}</th>
               {% endfor %}
             </tr>
           </thead>
@@ -82,7 +82,23 @@
               </tr>
             {% endfor %}
           </tbody>
-        </table>  
+        </table>
+        <div id="stats-container" class="stats">
+        <h3>Statistiche nutrizionali</h3>
+        <div>
+          
+          
+          <button id="stats-day-btn">Mostra statistiche giorno</button>
+        </div>
+        <div>
+         
+          
+          
+          
+          <button id="stats-week-btn">Mostra statistiche settimana</button>
+        </div>
+        <div id="stats-result"></div>
+      </div>  
       </div> 
     </section>
   </main>
@@ -94,5 +110,6 @@
 
   <script src="{{ url_for('static', filename='js/planner.js') }}"></script>
   <script src="{{ url_for('static', filename='js/gestorenewpiatti.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/gestore_stats.js') }}"></script>
 </body>
 </html>
