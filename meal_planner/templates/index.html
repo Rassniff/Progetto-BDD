@@ -13,7 +13,6 @@
     <p>Benvenuto, utente ID: {{ user_id }}!</p>
     <a href="{{ url_for('logout') }}">Logout</a>
   </header>
-
   <main>
     <section class="piatti">
       <h2>Piatti disponibili</h2>
@@ -51,13 +50,10 @@
         {% for piatto in piatti %}
           <li draggable="true" data-id="{{ piatto[0] }}" tabindex="0">
           {{ piatto[1] }}
-          
           </li>
         {% endfor %}
       </ul>
-      
     </section>
-
     <section class="planner">
       <h2>Il tuo planner settimanale</h2>
       <div class = "table-responsive">
@@ -76,7 +72,7 @@
                 <th>{{ pasto|capitalize }}</th>
                 {% for giorno in ['Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato','Domenica'] %}
                   <td class="cell" data-giorno="{{ giorno }}" data-pasto="{{ pasto }}">
-                    <!-- Qui JS inserirà i piatti -->
+                    <!-- Qui vengono inseriti i piatti tramite planner.js -->
                   </td>
                 {% endfor %}
               </tr>
@@ -100,15 +96,14 @@
       </div> 
     </section>
   </main>
-
   <div id="planner-data"
      data-planner='{{ planner | tojson | safe }}'
      data-user-id='{{ user_id | tojson | safe }}'
-     style="display:none"></div>
-
+     style="display:none">
+  </div>
   <script src="{{ url_for('static', filename='js/set_week_dates.js') }}"></script>
   <script src="{{ url_for('static', filename='js/planner.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/gestorenewpiatti.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/gestore_new_piatti.js') }}"></script>
   <script src="{{ url_for('static', filename='js/gestore_stats.js') }}"></script>
 </body>
 </html>
