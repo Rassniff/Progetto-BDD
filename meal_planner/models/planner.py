@@ -65,14 +65,11 @@ def get_stats_for_day(user_id, date):
     cursor = conn.cursor()
     cursor.execute("""
         SELECT
-          COALESCE (SUM(ingredienti.proteine * piatti_ingredienti.quantita / 100), 0) AS tot_proteine,
-          COALESCE (SUM(ingredienti.carboidrati * piatti_ingredienti.quantita / 100), 0) AS tot_carboidrati,
-          COALESCE (SUM(ingredienti.calorie * piatti_ingredienti.quantita / 100), 0) AS tot_calorie
-        FROM planner
-        JOIN piatti ON planner.piatto_id = piatti.id
-        JOIN piatti_ingredienti ON piatti.id = piatti_ingredienti.piatto_id
-        JOIN ingredienti ON piatti_ingredienti.ingrediente_id = ingredienti.id
-        WHERE planner.utente_id = %s AND DATE(planner.data) = %s
+          COALESCE(SUM(proteine), 0) AS tot_proteine,
+          COALESCE(SUM(carboidrati), 0) AS tot_carboidrati,
+          COALESCE(SUM(calorie), 0) AS tot_calorie
+        FROM planner_nutritional_view
+        WHERE utente_id = %s AND DATE(data) = %s
     """, (user_id, date))
     stats = cursor.fetchone()
     cursor.close()
@@ -85,14 +82,11 @@ def get_stats_for_week(user_id, start_date, end_date):
     cursor = conn.cursor()
     cursor.execute("""
         SELECT
-          COALESCE (SUM(ingredienti.proteine * piatti_ingredienti.quantita / 100), 0) AS tot_proteine,
-          COALESCE (SUM(ingredienti.carboidrati * piatti_ingredienti.quantita / 100), 0) AS tot_carboidrati,
-          COALESCE (SUM(ingredienti.calorie * piatti_ingredienti.quantita / 100), 0) AS tot_calorie
-        FROM planner
-        JOIN piatti ON planner.piatto_id = piatti.id
-        JOIN piatti_ingredienti ON piatti.id = piatti_ingredienti.piatto_id
-        JOIN ingredienti ON piatti_ingredienti.ingrediente_id = ingredienti.id
-        WHERE planner.utente_id = %s AND planner.data BETWEEN %s AND %s
+          COALESCE(SUM(proteine), 0) AS tot_proteine,
+          COALESCE(SUM(carboidrati), 0) AS tot_carboidrati,
+          COALESCE(SUM(calorie), 0) AS tot_calorie
+        FROM planner_nutritional_view
+        WHERE utente_id = %s AND DATE(data) BETWEEN %s AND %s
     """, (user_id, start_date, end_date))
     stats = cursor.fetchone()
     cursor.close()

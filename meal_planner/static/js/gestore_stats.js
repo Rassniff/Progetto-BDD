@@ -1,4 +1,3 @@
-
 // Statistiche giorno selezionato
 document.getElementById('stats-day-btn').onclick = function() {
   if (!giornoSelezionato) {
@@ -98,27 +97,3 @@ document.getElementById('stats-day-btn').onclick = function() {
     });
 };
 
-// Statistiche settimana corrente
-/*document.getElementById('stats-week-btn').onclick = function() {
-  // Calcola inizio e fine settimana corrente
-  const today = new Date();
-  const startOfWeek = new Date(today);
-  startOfWeek.setDate(today.getDate() - today.getDay() + 1); // Lunedì
-  const endOfWeek = new Date(startOfWeek);
-  endOfWeek.setDate(startOfWeek.getDate() + 6); // Domenica
-  const start = startOfWeek.toISOString().slice(0, 10);
-  const end = endOfWeek.toISOString().slice(0, 10);
-  fetch(`/stats-week?start=${start}&end=${end}`)
-    .then(res => res.json())
-    .then(data => {
-      if (data.success) {
-        document.getElementById('stats-result').innerHTML =
-          `<b>Settimana ${start} - ${end}</b><br>
-          Proteine: ${data.proteine.toFixed(2)} g<br>
-          Carboidrati: ${data.carboidrati.toFixed(2)} g<br>
-          Calorie: ${data.calorie.toFixed(2)} kcal`;
-      } else {
-        document.getElementById('stats-result').innerHTML = 'Nessun dato.';
-      }
-    });
-};*/

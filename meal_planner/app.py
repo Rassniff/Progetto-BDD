@@ -5,9 +5,9 @@ from config import Config
 
 # Importo funzioni dai modelli
 from models.utenti import get_user_by_email, user_exists, insert_user
-from models.piatti import get_piatti,insert_piatto, associa_ingredienti_al_piatto
-from models.planner import get_planner_for_user, add_or_update_planner, remove_from_planner,get_stats_for_day,get_stats_for_week
-from models.ingredienti import get_ingredienti,insert_ingrediente
+from models.piatti import get_piatti, insert_piatto, associa_ingredienti_al_piatto
+from models.planner import get_planner_for_user, add_or_update_planner, remove_from_planner, get_stats_for_day, get_stats_for_week
+from models.ingredienti import get_ingredienti, insert_ingrediente
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -128,7 +128,7 @@ def remove_from_planner_r():
 
     return jsonify({'success': True})
 
-#restituisce la lista degli ingredienti
+# --- ROUTE: Restituisce la lista degli ingredienti ---
 @app.route('/ingredienti-list')
 def ingredienti_list():
     if 'user_id' not in session:
@@ -143,7 +143,7 @@ def ingredienti_list():
         } for ing in ingredienti
     ])
 
-# creazione di un nuovo piatto con ingredienti
+# --- ROUTE: Aggiungi un nuovo piatto ---
 @app.route('/crea-piatto', methods=['POST'])
 def crea_piatto():
     if 'user_id' not in session:
@@ -160,7 +160,7 @@ def crea_piatto():
     associa_ingredienti_al_piatto(piatto_id, ingredienti_quantita)
     return jsonify({"success": True, "piatto_id": piatto_id})
 
-#creazione nuovo ingrediente
+# --- ROUTE: Aggiungi un nuovo ingrediente ---
 @app.route('/aggiungi-ingrediente', methods=['POST'])
 def aggiungi_ingrediente():
     if 'user_id' not in session:
@@ -178,6 +178,7 @@ def aggiungi_ingrediente():
     insert_ingrediente(nome, unita_misura, proteine, carboidrati, calorie, utente_id=session['user_id'], validato=validato)
     return jsonify({"success": True})
 
+# --- ROUTE: Statistiche giornaliere ---
 @app.route('/stats-day', methods=['GET'])
 def stats_day():
     if 'user_id' not in session:
@@ -193,7 +194,7 @@ def stats_day():
         "calorie": float(stats[2]) if stats[2] is not None else 0
     })
 
-
+# --- ROUTE: Statistiche settimanali ---
 @app.route('/stats-week', methods=['GET'])
 def stats_week():
     if 'user_id' not in session:
@@ -209,7 +210,6 @@ def stats_week():
         "carboidrati": float(stats[1]) if stats[1] is not None else 0,
         "calorie": float(stats[2]) if stats[2] is not None else 0
     }) 
-
 
 # Esegui l'app
 if __name__ == '__main__':
