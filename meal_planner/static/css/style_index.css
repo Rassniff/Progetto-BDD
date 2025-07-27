@@ -2,8 +2,8 @@
   cursor: pointer;
 }
 .giorno-header.selected-cell {
-  background-color: #ffe082 !important;
-  outline: 2px solid #ff9800;
+  background-color: #91a6f3 !important;
+  outline: 2px solid #4d74f5;
 }
 /* Reset base */
 * {
@@ -17,7 +17,7 @@
 
 /* Layout principale */
 body {
-  background: #fdf6e3; /* colore chiaro e caldo */
+  background: #f7f9fc; /* colore chiaro e caldo */
   padding: 1rem;
 }
 
@@ -29,7 +29,7 @@ header {
 }
 
 header h1 {
-  color: #27ae60; /* verde fresh */
+  color: #001b6b; 
   font-weight: 700;
 }
 
@@ -47,19 +47,29 @@ header a:hover {
 /* Flex container per piatti e planner */
 main {
   display: flex;
-  gap: 2rem;
+  
   flex-wrap: wrap;
 }
 
 /* Sezioni piatti e planner */
 .piatti, .planner {
-  flex: 1 1 400px;
   background: #ffffff;
   padding: 1rem;
   border-radius: 8px;
   box-shadow: 0 0 8px rgba(0,0,0,0.1);
 }
 
+.piatti {
+  flex: 0 1 25%;
+  max-width: 25%;
+  min-width: 220px;
+}
+
+.planner {
+  flex: 0 1 75%;
+  max-width: 75%;
+  min-width: 350px;
+}
 /* Lista piatti */
 ul#piatti-list {
   list-style: none;
@@ -69,7 +79,7 @@ ul#piatti-list {
 }
 
 ul#piatti-list li {
-  background: #dff0d8; /* verde chiaro */
+  background: #c3deff; 
   padding: 0.7rem 1rem;
   margin-bottom: 0.5rem;
   cursor: grab;
@@ -80,7 +90,7 @@ ul#piatti-list li {
 
 ul#piatti-list li:active {
   cursor: grabbing;
-  background: #a9d18e;
+  background: #a3b2fe;
 }
 
 .cell {
@@ -92,7 +102,7 @@ ul#piatti-list li:active {
 }
 
 .cell p {
-  background: #27ae60;
+  background: #a9c7ff;
   color: white;
   padding: 0.4rem 0.7rem;
   margin: 0.25rem 0;
@@ -106,7 +116,7 @@ ul#piatti-list li:active {
 /* Drag & drop feedback */
 .cell.dragover {
   background-color: #d1f2eb;
-  border-color: #16a085;
+  border-color: #8e95c6;
 }
 
 .cell {
@@ -125,7 +135,7 @@ table {
 }
 
 th, td {
-  border: 2px solid #27ae60;
+  border: 2px solid #000000;
   padding: 1rem;
   text-align: center;
   min-width: 130px;
@@ -133,8 +143,8 @@ th, td {
 }
 
 th {
-  background: #dff0d8;
-  color: #27ae60;
+  background: #c3deff;
+  color: #000000;
   font-weight: bold;
   font-size: 1.2rem;
 }
@@ -172,16 +182,66 @@ th {
   left: 50%;
   transform: translate(-50%, 0);
   background: #fff;
-  border: 2px solid #27ae60;
+  border: 2px solid #a9c7ff;
   padding: 2rem;
   z-index: 1000;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
+
+#stats-day-btn{
+
+  background: #c3deff;
+  color: #000000;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+
+#stats-week-btn{
+  background: #c3deff;
+  color: #000000;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+
+}
+
+#stats-week-btn:hover{
+  background: #b2d4ff;
+}
+
+#stats-day-btn:hover{
+  background: #b2d4ff;
+}
+
+#open-create-piatto-modal{
+  background: #c3deff;
+  color: #000000;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+  margin-bottom: 1rem;
+
+}
+#open-create-piatto-modal:hover{
+  background: #b2d4ff;
+}
+
 /* Scroll per dispositivi mobili */
 @media (max-width: 768px) {
   main {
     flex-direction: column;
+    flex-wrap: nowrap;
   }
   .piatti, .planner {
     max-width: 100%;

@@ -43,7 +43,7 @@ input[type="password"] {
 
 button {
   padding: 0.75rem;
-  background: #2ecc71;
+  background: #b3e8ff;
   border: none;
   color: #fff;
   font-weight: bold;
@@ -53,7 +53,7 @@ button {
 }
 
 button:hover {
-  background: #27ae60;
+  background: #79deff;
 }
 
 .flash {
