@@ -18,7 +18,7 @@
 /* Layout principale */
 body {
   background: #f7f9fc; /* colore chiaro e caldo */
-  padding: 1rem;
+  padding: 2rem;
 }
 
 header {
@@ -47,8 +47,8 @@ header a:hover {
 /* Flex container per piatti e planner */
 main {
   display: flex;
-  
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  gap: 2rem; /* spazio orizzontale tra piatti e planner */
 }
 
 /* Sezioni piatti e planner */
@@ -153,10 +153,12 @@ th {
   width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch; /* per swipe fluido su iOS */
+  padding-bottom: 1rem;
 }
 
 .planner table {
-  min-width: 600px; /* o quanto basta per non schiacciare celle */
+  min-width: 700px; /* o quanto basta per non schiacciare celle */
+  width: 100%;
 }
 
 .remove-btn {
@@ -199,6 +201,8 @@ th {
   cursor: pointer;
   font-size: 1rem;
   transition: background 0.3s ease;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 #stats-week-btn{
@@ -210,6 +214,7 @@ th {
   cursor: pointer;
   font-size: 1rem;
   transition: background 0.3s ease;
+  margin-left: 1rem;
 
 }
 
@@ -231,6 +236,7 @@ th {
   font-size: 1rem;
   transition: background 0.3s ease;
   margin-bottom: 1rem;
+  margin-top: 1rem;
 
 }
 #open-create-piatto-modal:hover{
@@ -238,7 +244,7 @@ th {
 }
 
 /* Scroll per dispositivi mobili */
-@media (max-width: 768px) {
+@media (max-width: 950px) {
   main {
     flex-direction: column;
     flex-wrap: nowrap;
@@ -247,7 +253,15 @@ th {
     max-width: 100%;
   }
   th, td {
-    padding: 0.5rem;
-    font-size: 0.95rem;
+    padding: 0.4rem;
+    font-size: 0.9rem;
+    min-width: 90px;
+  }
+  .table-responsive{
+    min-width: 0; /* per evitare overflow orizzontale */
+
+  }
+  .planner table {
+    min-width: 500px; /* per adattarsi a schermi piccoli */
   }
 }

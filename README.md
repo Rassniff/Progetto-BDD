@@ -64,3 +64,21 @@ Funzionalità come drag and drop / logica bottoni ecc in JavaScript (come nel pr
 //LEGGENDA
 # Completato
 -- Da fare
+
+
+
+
+
+
+
+// Evidenzia la cella selezionata e salva il giorno
+document.querySelectorAll('.giorno-header').forEach(cell => {
+  cell.addEventListener('click', function() {
+    document.querySelectorAll('.giorno-header').forEach(c => c.classList.remove('selected-cell'));
+    this.classList.add('selected-cell');
+    giornoSelezionato = this.getAttribute('data-giorno');
+    // Trova la prima cella del giorno selezionato e prendi la data reale
+    const primaCella = document.querySelector(`.cell[data-giorno="${giornoSelezionato}"]`);
+    giornoDataSelezionata = getDateForWeekday(giornoSelezionato);
+  });
+});

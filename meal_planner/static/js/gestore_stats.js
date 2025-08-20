@@ -67,12 +67,18 @@ function getDateForWeekday(weekday) {
 // Evidenzia la cella selezionata e salva il giorno
 document.querySelectorAll('.giorno-header').forEach(cell => {
   cell.addEventListener('click', function() {
-    document.querySelectorAll('.giorno-header').forEach(c => c.classList.remove('selected-cell'));
-    this.classList.add('selected-cell');
-    giornoSelezionato = this.getAttribute('data-giorno');
-    // Trova la prima cella del giorno selezionato e prendi la data reale
-    const primaCella = document.querySelector(`.cell[data-giorno="${giornoSelezionato}"]`);
-    giornoDataSelezionata = getDateForWeekday(giornoSelezionato);
+    if (this.classList.contains('selected-cell')) {
+      // Se già selezionata, deseleziona e azzera variabili
+      this.classList.remove('selected-cell');
+      giornoSelezionato = null;
+      giornoDataSelezionata = null;
+    } else {
+      // Deseleziona tutte e seleziona questa
+      document.querySelectorAll('.giorno-header').forEach(c => c.classList.remove('selected-cell'));
+      this.classList.add('selected-cell');
+      giornoSelezionato = this.getAttribute('data-giorno');
+      giornoDataSelezionata = getDateForWeekday(giornoSelezionato);
+    }
   });
 });
 
