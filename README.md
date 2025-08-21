@@ -23,33 +23,33 @@ L’applicazione è sviluppata con **Python (Flask)** per il backend e **HTML, C
 ## Struttura del progetto
 
     Meal-Planner/
-    ├── app.py # Entry point Flask (route principali)
-    ├── config.py # Configurazione applicazione e DB
-    ├── requirements.txt # Dipendezne utilizzate
+    ├── app.py                            # Entry point Flask (route principali)
+    ├── config.py                         # Configurazione applicazione e DB
+    ├── requirements.txt                  # Dipendezne utilizzate
     ├── db/
     │ ├── init_db.sql
     │ ├── planner_nutritional_view.sql
-    ├── models/ # Moduli Python con le query per ciascuna tabella
+    ├── models/                           # Moduli Python con le query per ciascuna tabella
     │ ├── utenti.py
     │ ├── ingredienti.py
     │ ├── piatti.py
     │ └── planner.py
     ├── static/
     │ ├── css/
-    │ │ └── style_index.css # Stili principali index
-    │ │ └── style.css # Stili principali pagina di login
+    │ │ └── style_index.css               # Stili principali index
+    │ │ └── style.css                     # Stili principali pagina di login
     │ └── js/
-    │ | └── planner.js # Logica frontend per drag&drop e API
-    │ | └── gestore_stats.js # Logica stats
-    │ | └── set_week_dates.js # Logica date
-    │ | └── gestore_new_piatti.js # Logica piatti
+    │ | └── planner.js                    # Logica frontend per drag&drop e API
+    │ | └── gestore_stats.js              # Logica stats
+    │ | └── set_week_dates.js             # Logica date
+    │ | └── gestore_new_piatti.js         # Logica piatti
     ├── templates/
-    │ | ├── index.html # Homepage con planner settimanale
-    │ | ├── login.html # Pagina di login
-    │ | └── register.html # Pagina di registrazione
+    │ | ├── index.html                    # Homepage con planner settimanale
+    │ | ├── login.html                    # Pagina di login
+    │ | └── register.html                 # Pagina di registrazione
     ├── relazione/
-    │ └── relazione.pdf # Relazione tecnica del progetto
-    └── README.md # Documentazione del progetto
+    │ └── relazione.pdf                   # Relazione tecnica del progetto
+    └── README.md                         # Documentazione del progetto
 
 ---
 
@@ -70,8 +70,8 @@ L’applicazione è sviluppata con **Python (Flask)** per il backend e **HTML, C
    source .venv/bin/activate   # su Linux/Mac
    .venv\Scripts\activate      # su Windows
    pip install -r requirements.txt
-
-Configura il database in config.py:
+   
+3.Configura il database in config.py:
 
     DB_CONFIG = {
         'host': 'localhost',
@@ -80,30 +80,38 @@ Configura il database in config.py:
         'database': 'meal_planner'
     }
 
-Avvia l’app:
+---
+
+### Avvia l’app:
 
 python app.py
 Apri il browser su http://localhost:5000
 
 Principali route Flask
-Metodo	Endpoint	Descrizione
-GET	/login	Login utente
-POST	/login	Autenticazione utente
-GET	/register	Pagina di registrazione
-POST	/register	Creazione nuovo account
-GET	/	Homepage con planner settimanale
-POST	/add-to-planner	Aggiunge un piatto al planner
-POST	/remove-from-planner	Rimuove un piatto dal planner
-POST	/crea-piatto	Crea un nuovo piatto con ingredienti
-POST	/aggiungi-ingrediente	Inserisce un nuovo ingrediente
-GET	/stats-day	Restituisce le statistiche nutrizionali giornaliere
-GET	/stats-week	Restituisce le statistiche nutrizionali settimanali
 
-Autori
+    Metodo	Endpoint	Descrizione
+    GET	/login	Login utente
+    POST	/login	Autenticazione utente
+    GET	/register	Pagina di registrazione
+    POST	/register	Creazione nuovo account
+    GET	/	Homepage con planner settimanale
+    POST	/add-to-planner	Aggiunge un piatto al planner
+    POST	/remove-from-planner	Rimuove un piatto dal planner
+    POST	/crea-piatto	Crea un nuovo piatto con ingredienti
+    POST	/aggiungi-ingrediente	Inserisce un nuovo ingrediente
+    GET	/stats-day	Restituisce le statistiche nutrizionali giornaliere
+    GET	/stats-week	Restituisce le statistiche nutrizionali settimanali
+
+---
+
+## Autori
+
 Andrii Ursu
 Diego Chiodi
 
-Corso di Basi di Dati A.A. 2024/2025
+Corso di Basi di Dati 
+A.A. 2024/2025
 
-Licenza
+---
+## Licenza
 Questo progetto è realizzato a scopo didattico per uso universitario.
