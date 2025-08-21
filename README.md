@@ -22,26 +22,26 @@ L’applicazione è sviluppata con **Python (Flask)** per il backend e **HTML, C
 
 ## Struttura del progetto
 
-  Meal-Planner/
-  ├── app.py # Entry point Flask (route principali)
-  ├── config.py # Configurazione applicazione e DB
-  ├── models/ # Moduli Python con le query per ciascuna tabella
-  │ ├── utenti.py
-  │ ├── ingredienti.py
-  │ ├── piatti.py
-  │ └── planner.py
-  ├── static/
-  │ ├── css/
-  │ │ └── style_index.css # Stili principali
-  │ └── js/
-  │ └── planner.js # Logica frontend per drag&drop e API
-  ├── templates/
-  │ ├── index.html # Homepage con planner settimanale
-  │ ├── login.html # Pagina di login
-  │ └── register.html # Pagina di registrazione
-  ├── relazione/
-  │ └── relazione.pdf # Relazione tecnica del progetto
-  └── README.md # Documentazione del progetto
+    Meal-Planner/
+    ├── app.py # Entry point Flask (route principali)
+    ├── config.py # Configurazione applicazione e DB
+    ├── models/ # Moduli Python con le query per ciascuna tabella
+    │ ├── utenti.py
+    │ ├── ingredienti.py
+    │ ├── piatti.py
+    │ └── planner.py
+    ├── static/
+    │ ├── css/
+    │ │ └── style_index.css # Stili principali
+    │ └── js/
+    │ └── planner.js # Logica frontend per drag&drop e API
+    ├── templates/
+    │ ├── index.html # Homepage con planner settimanale
+    │ ├── login.html # Pagina di login
+    │ └── register.html # Pagina di registrazione
+    ├── relazione/
+    │ └── relazione.pdf # Relazione tecnica del progetto
+    └── README.md # Documentazione del progetto
 
 ---
 
