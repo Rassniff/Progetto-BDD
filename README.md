@@ -89,18 +89,20 @@ Apri il browser su http://localhost:5000
 
 Principali route Flask
 
-    Metodo	Endpoint	Descrizione
-    GET	/login	Login utente
-    POST	/login	Autenticazione utente
-    GET	/register	Pagina di registrazione
-    POST	/register	Creazione nuovo account
-    GET	/	Homepage con planner settimanale
-    POST	/add-to-planner	Aggiunge un piatto al planner
-    POST	/remove-from-planner	Rimuove un piatto dal planner
-    POST	/crea-piatto	Crea un nuovo piatto con ingredienti
-    POST	/aggiungi-ingrediente	Inserisce un nuovo ingrediente
-    GET	/stats-day	Restituisce le statistiche nutrizionali giornaliere
-    GET	/stats-week	Restituisce le statistiche nutrizionali settimanali
+| Metodo | Endpoint                | Descrizione                                         |
+| :----- | :---------------------- | :-------------------------------------------------- |
+| `GET`  | `/login`                | Login utente                                        |
+| `POST` | `/login`                | Autenticazione utente                               |
+| `GET`  | `/register`             | Pagina di registrazione                             |
+| `POST` | `/register`             | Creazione nuovo account                             |
+| `GET`  | `/`                     | Homepage con planner settimanale                    |
+| `POST` | `/add-to-planner`       | Aggiunge un piatto al planner                       |
+| `POST` | `/remove-from-planner`  | Rimuove un piatto dal planner                       |
+| `POST` | `/crea-piatto`          | Crea un nuovo piatto con ingredienti                |
+| `POST` | `/aggiungi-ingrediente` | Inserisce un nuovo ingrediente                      |
+| `GET`  | `/stats-day`            | Restituisce le statistiche nutrizionali giornaliere |
+| `GET`  | `/stats-week`           | Restituisce le statistiche nutrizionali settimanali |
+
 
 ---
 
