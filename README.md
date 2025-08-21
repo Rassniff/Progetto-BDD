@@ -71,8 +71,8 @@ L’applicazione è sviluppata con **Python (Flask)** per il backend e **HTML, C
    .venv\Scripts\activate      # su Windows
    pip install -r requirements.txt
    
-3.Configura il database in config.py:
-
+3. Configura il database in config.py:
+    ```bash
     DB_CONFIG = {
         'host': 'localhost',
         'user': 'root',
@@ -84,7 +84,9 @@ L’applicazione è sviluppata con **Python (Flask)** per il backend e **HTML, C
 
 ### Avvia l’app:
 
+```bash
 python app.py
+```
 Apri il browser su http://localhost:5000
 
 Principali route Flask
