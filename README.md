@@ -65,13 +65,15 @@ L’applicazione è sviluppata con **Python (Flask)** per il backend e **HTML, C
 
 1. Clona il repository o scaricalo in locale.
 2. Crea un ambiente virtuale ed installa i pacchetti:
+   
    ```bash
    python -m venv .venv
    source .venv/bin/activate   # su Linux/Mac
    .venv\Scripts\activate      # su Windows
    pip install -r requirements.txt
    
-3. Configura il database in config.py:
+4. Configura il database in config.py:
+   
     ```bash
     DB_CONFIG = {
         'host': 'localhost',
@@ -80,13 +82,12 @@ L’applicazione è sviluppata con **Python (Flask)** per il backend e **HTML, C
         'database': 'meal_planner'
     }
 
----
-
-## Avvia l’app:
+### Avvia l’app
 
 ```bash
 python app.py
 ```
+
 Apri il browser su http://localhost:5000
 
 ---
@@ -112,8 +113,7 @@ Apri il browser su http://localhost:5000
 
 ## Autori
 
-Andrii Ursu
-Diego Chiodi
+Andrii Ursu, Diego Chiodi
 
 Corso di Basi di Dati 
 A.A. 2024/2025
