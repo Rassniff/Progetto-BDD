@@ -73,12 +73,12 @@ L’applicazione è sviluppata con **Python (Flask)** per il backend e **HTML, C
 
 Configura il database in config.py:
 
-DB_CONFIG = {
-    'host': 'localhost',
-    'user': 'root',
-    'password': 'password',
-    'database': 'meal_planner'
-}
+    DB_CONFIG = {
+        'host': 'localhost',
+        'user': 'root',
+        'password': 'password',
+        'database': 'meal_planner'
+    }
 
 Avvia l’app:
 
