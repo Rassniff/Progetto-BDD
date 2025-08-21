@@ -82,14 +82,16 @@ L’applicazione è sviluppata con **Python (Flask)** per il backend e **HTML, C
 
 ---
 
-### Avvia l’app:
+## Avvia l’app:
 
 ```bash
 python app.py
 ```
 Apri il browser su http://localhost:5000
 
-Principali route Flask
+---
+
+### Principali route Flask
 
 | Metodo | Endpoint                | Descrizione                                         |
 | :----- | :---------------------- | :-------------------------------------------------- |
