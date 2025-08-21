@@ -1,84 +1,101 @@
-# Progetto-BDD INFO PROGETTO
+# Progetto Meal Planner 2024–2025
 
-# Ambiente virtuale python
-venv\Scripts\activate --> oppure deactivate
-python app.py --> per runnare il backend
+Questo progetto consiste in una web application full-stack che consente di pianificare i pasti settimanali e calcolare i valori nutrizionali giornalieri e settimanali.  
+L’applicazione è sviluppata con **Python (Flask)** per il backend e **HTML, CSS e JavaScript** per il frontend, utilizzando **MySQL** come database relazionale.
 
-# Funzionamento Flask (framework backend)
-Gestisce richieste HTTP - Parla con il db
-Browser ⟶ GET /piatti ⟶ Flask ⟶ SELECT * FROM piatti ⟶ MySQL
-Risposta: MySQL → Flask → HTML/JSON → Browser
+---
 
-# Funzionamento MySql Workbench (DBSM)
-Db in locale --> modifica del file init_db.sql --> run script sql su MySql Workbench
-In seguito creazione dello schema...
+## Funzionalità principali
 
-# Funzionamento Frontend (flask + html + css + js)
-Flask genera pagine HTML dal server.
-Tu crei file .html in una cartella templates/.
-Dentro i file .html puoi usare Jinja2, che ti permette di inserire variabili Python nel codice HTML.
-Funzionalità come drag and drop / logica bottoni ecc in JavaScript (come nel progetto dell'API)
+- Registrazione e login utente con gestione sessioni (bcrypt per password hashing).
+- Visualizzazione dei piatti disponibili (propri o validati).
+- Pianificazione settimanale tramite **drag & drop** dei piatti nel planner.
+- Creazione di nuovi piatti e associazione ingredienti.
+- Inserimento di nuovi ingredienti personalizzati.
+- Calcolo automatico delle **statistiche nutrizionali**:
+  - valori giornalieri
+  - valori settimanali
+- Backend strutturato in moduli (`models/`) con query SQL parametrizzate.
+- Utilizzo di una **view SQL** (`planner_nutritional_view`) per ottimizzare i calcoli nutrizionali.
 
------------------------------------------------------------------------------------------
-# INIZIO PROGETTO
+---
 
-# Progettazione db
+## Struttura del progetto
 
---Ingrediente(nome/unità di misura) #
---Piatti # sia pubblici che privati (per utente) 1 di default per piatti pubblici con utende_id NULL, 0 per piatto privato con utente_id settato
---Piatti_Ingredienti #
---Utenti # 
---Planner #
+Meal-Planner/
+├── app.py # Entry point Flask (route principali)
+├── config.py # Configurazione applicazione e DB
+├── models/ # Moduli Python con le query per ciascuna tabella
+│ ├── utenti.py
+│ ├── ingredienti.py
+│ ├── piatti.py
+│ └── planner.py
+├── static/
+│ ├── css/
+│ │ └── style_index.css # Stili principali
+│ └── js/
+│ └── planner.js # Logica frontend per drag&drop e API
+├── templates/
+│ ├── index.html # Homepage con planner settimanale
+│ ├── login.html # Pagina di login
+│ └── register.html # Pagina di registrazione
+├── relazione/
+│ └── relazione.pdf # Relazione tecnica del progetto
+└── README.md # Documentazione del progetto
 
-# Frontend + Backend
+---
 
---Gestione utenza 
-# route backend + file python /models/utenti.py con le query + html e css
+## Avvio del progetto
 
---Aggiungere cambio password e recupera password e validazione email 
+### Requisiti
 
---Pagina principale (sx lista di tutti i piatti disponibili) (dx calendario) 
-# html e css responsive (2 div centrali) 
+- **[Python 3.10+](https://www.python.org/)**  
+- **[MySQL](https://www.mysql.com/)** installato e attivo  
+- Un **browser moderno** (Chrome, Firefox, Edge)
 
---Aggiunta piatto globale al planner(griglia) con drag and drop 
-# route backend per l'aggiunta + file python /models/planner.py con le query + file js per il drag and drop + html e css(tabella/griglia)
+### Installazione
 
---Rimozione di un piatto dal planner(griglia) con bottone 
-# route backend per la rimozione + file python /models/planner.py con le query + file js per bottone di rimozione + html e css(bottone)
+1. Clona il repository o scaricalo in locale.
+2. Crea un ambiente virtuale ed installa i pacchetti:
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate   # su Linux/Mac
+   .venv\Scripts\activate      # su Windows
+   pip install -r requirements.txt
 
---Aggiunta piatto privato (se non c'è l'ingrediente giusto lo aggiungo (globale)) 
-# sia il piatto che ingrediente privati o pubblici in base a a una flag
+Configura il database in config.py:
 
---Gestione indici in fase di inserimento e rimozione(opzionale)(intendo l'ordine dell'id)
+DB_CONFIG = {
+    'host': 'localhost',
+    'user': 'root',
+    'password': 'password',
+    'database': 'meal_planner'
+}
 
---Pagina stats con filtri su proteine/carbo giornalieri o settimanali (calcolo quantità x percentuale di proteine/carbo)
-# fatta giornaliera e settimanale
+Avvia l’app:
 
---Migliorare estetica , progettarlo in orrizzontale non in verticale
+python app.py
+Apri il browser su http://localhost:5000
 
---bottone che toglie tutti i piatti nella griglia
+Principali route Flask
+Metodo	Endpoint	Descrizione
+GET	/login	Login utente
+POST	/login	Autenticazione utente
+GET	/register	Pagina di registrazione
+POST	/register	Creazione nuovo account
+GET	/	Homepage con planner settimanale
+POST	/add-to-planner	Aggiunge un piatto al planner
+POST	/remove-from-planner	Rimuove un piatto dal planner
+POST	/crea-piatto	Crea un nuovo piatto con ingredienti
+POST	/aggiungi-ingrediente	Inserisce un nuovo ingrediente
+GET	/stats-day	Restituisce le statistiche nutrizionali giornaliere
+GET	/stats-week	Restituisce le statistiche nutrizionali settimanali
 
+Autori
+Andrii Ursu
+Diego Chiodi
 
+Corso di Basi di Dati A.A. 2024/2025
 
-
-//LEGGENDA
-# Completato
--- Da fare
-
-
-
-
-
-
-
-// Evidenzia la cella selezionata e salva il giorno
-document.querySelectorAll('.giorno-header').forEach(cell => {
-  cell.addEventListener('click', function() {
-    document.querySelectorAll('.giorno-header').forEach(c => c.classList.remove('selected-cell'));
-    this.classList.add('selected-cell');
-    giornoSelezionato = this.getAttribute('data-giorno');
-    // Trova la prima cella del giorno selezionato e prendi la data reale
-    const primaCella = document.querySelector(`.cell[data-giorno="${giornoSelezionato}"]`);
-    giornoDataSelezionata = getDateForWeekday(giornoSelezionato);
-  });
-});
+Licenza
+Questo progetto è realizzato a scopo didattico per uso universitario.
