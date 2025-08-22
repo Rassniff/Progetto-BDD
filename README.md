@@ -25,7 +25,7 @@ L’applicazione è sviluppata con **Python (Flask)** per il backend e **HTML, C
     Meal-Planner/
     ├── app.py                            # Entry point Flask (route principali)
     ├── config.py                         # Configurazione applicazione e DB
-    ├── requirements.txt                  # Dipendezne utilizzate
+    ├── requirements.txt                  # Pacchetti utilizzati
     ├── db/
     │ ├── init_db.sql
     │ ├── planner_nutritional_view.sql
@@ -40,7 +40,7 @@ L’applicazione è sviluppata con **Python (Flask)** per il backend e **HTML, C
     │ │ └── style.css                     # Stili principali pagina di login
     │ └── js/
     │ | └── planner.js                    # Logica frontend per drag&drop e API
-    │ | └── gestore_stats.js              # Logica stats
+    │ | └── gestore_stats.js              # Logica statistiche
     │ | └── set_week_dates.js             # Logica date
     │ | └── gestore_new_piatti.js         # Logica piatti
     ├── templates/
