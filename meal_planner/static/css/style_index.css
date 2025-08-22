@@ -1,3 +1,5 @@
+/* style_index.css - Tema Meal Planner */
+
 .giorno-header {
   cursor: pointer;
 }
@@ -5,19 +7,19 @@
   background-color: #91a6f3 !important;
   outline: 2px solid #4d74f5;
 }
-/* Reset base */
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #333;
-  user-select: none; /* evita selezioni accidentali */
+  user-select: none; 
 }
 
 /* Layout principale */
 body {
-  background: #f7f9fc; /* colore chiaro e caldo */
+  background: #f7f9fc;
   padding: 2rem;
 }
 
@@ -35,7 +37,7 @@ header h1 {
 
 header a {
   text-decoration: none;
-  color: #e74c3c; /* rosso logout */
+  color: #e74c3c; 
   font-weight: 600;
   transition: color 0.3s ease;
 }
@@ -48,7 +50,7 @@ header a:hover {
 main {
   display: flex;
   flex-wrap: nowrap;
-  gap: 2rem; /* spazio orizzontale tra piatti e planner */
+  gap: 2rem; 
 }
 
 /* Sezioni piatti e planner */
@@ -70,6 +72,7 @@ main {
   max-width: 75%;
   min-width: 350px;
 }
+
 /* Lista piatti */
 ul#piatti-list {
   list-style: none;
@@ -157,7 +160,7 @@ th {
 }
 
 .planner table {
-  min-width: 700px; /* o quanto basta per non schiacciare celle */
+  min-width: 700px; 
   width: 100%;
 }
 
@@ -258,10 +261,10 @@ th {
     min-width: 90px;
   }
   .table-responsive{
-    min-width: 0; /* per evitare overflow orizzontale */
+    min-width: 0; 
 
   }
   .planner table {
-    min-width: 500px; /* per adattarsi a schermi piccoli */
+    min-width: 500px; 
   }
 }

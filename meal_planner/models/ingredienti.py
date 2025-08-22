@@ -1,5 +1,6 @@
 from . import get_db_connection
 
+# Recupera tutti gli ingredienti validati o quelli creati dall'utente specificato
 def get_ingredienti(user_id=None):
     conn = get_db_connection()
     cursor = conn.cursor()
@@ -20,6 +21,7 @@ def get_ingredienti(user_id=None):
     conn.close()
     return ingredienti
 
+# Inserisce un nuovo ingrediente nel database
 def insert_ingrediente(nome, unita_misura, proteine, carboidrati, calorie, utente_id=None, validato=1):
     conn = get_db_connection()
     cursor = conn.cursor()

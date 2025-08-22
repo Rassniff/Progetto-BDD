@@ -1,5 +1,6 @@
 from . import get_db_connection
 
+# Recupera il planner per l'utente specificato
 def get_planner_for_user(user_id):
     conn = get_db_connection()
     cursor = conn.cursor()
@@ -22,6 +23,7 @@ def get_planner_for_user(user_id):
         for row in planner
     ]
 
+# Aggiunge o aggiorna un piatto nel planner per un dato giorno e pasto
 def add_or_update_planner(user_id, data_giorno, pasto, piatto_id):
     conn = get_db_connection()
     cursor = conn.cursor()
@@ -48,6 +50,7 @@ def add_or_update_planner(user_id, data_giorno, pasto, piatto_id):
 
     return planner_id 
 
+# Rimuove un piatto specifico dal planner per un dato giorno e pasto
 def remove_from_planner(user_id, data_giorno, pasto, piatto_id):
     conn = get_db_connection()
     cursor = conn.cursor()
@@ -59,7 +62,7 @@ def remove_from_planner(user_id, data_giorno, pasto, piatto_id):
     cursor.close()
     conn.close()
 
-#somma ingredienti per statistica giornaliera
+#Somma ingredienti per statistica giornaliera
 def get_stats_for_day(user_id, date):
     conn = get_db_connection()
     cursor = conn.cursor()
@@ -76,7 +79,7 @@ def get_stats_for_day(user_id, date):
     conn.close()
     return stats
 
-#somma ingredienti per statistica settimanale
+#Somma ingredienti per statistica settimanale
 def get_stats_for_week(user_id, start_date, end_date):
     conn = get_db_connection()
     cursor = conn.cursor()

@@ -20,7 +20,7 @@ cells.forEach(cell => {
   cell.addEventListener('drop', handleDrop);
 });
 
-// Piatti trascinabili (assumo li hai in #piatti-list con data-id)
+// Piatti trascinabili
 const piatti = document.querySelectorAll('#piatti-list li');
 piatti.forEach(piatto => {
   piatto.setAttribute('draggable', true);
@@ -31,8 +31,8 @@ piatti.forEach(piatto => {
 // plannerData = [[data, pasto, piatto_id, nome_piatto], ...]
 plannerData.forEach(entry => {
   const data = new Date(entry.data);
-  const dayIndex = data.getDay();
-  // converti getDay() 0=Dom, 1=Lun,... a indice 0=Lun per giorni array
+  const dayIndex = data.getDay(); //conversione 0=Dom, 1=Lun,... a indice 0=Lun per giorni array
+  
   const giorno = giorni[(dayIndex + 6) % 7];
   const pasto = entry.pasto;
   const piatto = entry.nome;
@@ -70,11 +70,13 @@ plannerData.forEach(entry => {
 let draggedPiattoId = null;
 let draggedPiattoName = '';
 
+// Funzioni drag & drop
 function handleDragStart(e) {
   draggedPiattoId = this.dataset.id;
   draggedPiattoName = this.textContent;
 }
 
+// Gestione drop
 function handleDrop(e) {
   e.preventDefault();
   this.classList.remove('dragover');
@@ -108,7 +110,6 @@ function handleDrop(e) {
     if (data.success) {
       this.setAttribute('data-data', data.data_giorno);
 
-      //Ora uso l'ID aggiornato!
       const p = document.createElement('p');
       p.textContent = draggedPiattoName;
 

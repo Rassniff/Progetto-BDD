@@ -1,3 +1,4 @@
+//gestore apertura e chiusura modal della creazione nuovo piatto
 document.getElementById('open-create-piatto-modal').onclick = function() {
   document.getElementById('create-piatto-modal').style.display = 'block';
   fetch('/ingredienti-list')
@@ -16,12 +17,11 @@ document.getElementById('open-create-piatto-modal').onclick = function() {
       });
     });
 };
-
-//gestore apertura chiusura modal della creazione piatto
 document.getElementById('close-create-piatto-modal').onclick = function() {
   document.getElementById('create-piatto-modal').style.display = 'none';
 };
 
+//gestore submit form nuovo piatto
 document.getElementById('create-piatto-form').onsubmit = function(e) {
   e.preventDefault();
   const form = e.target;
@@ -50,13 +50,15 @@ document.getElementById('create-piatto-form').onsubmit = function(e) {
   });
 };
 
-//gestione apertura e chiusura modal crea nuovo ingrediente
+//gestione apertura e chiusura modal della creazione nuovo ingrediente
 document.getElementById('open-add-ingrediente-modal').onclick = function() {
   document.getElementById('add-ingrediente-modal').style.display = 'block';
 };
 document.getElementById('close-add-ingrediente-modal').onclick = function() {
   document.getElementById('add-ingrediente-modal').style.display = 'none';
 };
+
+//gestore submit form crea nuovo ingrediente
 document.getElementById('add-ingrediente-form').onsubmit = function(e) {
 
   e.preventDefault();
@@ -84,7 +86,7 @@ document.getElementById('add-ingrediente-form').onsubmit = function(e) {
   .then(result => {
     if (result.success) {
       document.getElementById('add-ingrediente-modal').style.display = 'none';
-      // Aggiorna la lista ingredienti nel modal piatto SENZA riaprire il modal
+      // Aggiorna la lista ingredienti nel modal piatto senza riaprire il modal
       fetch('/ingredienti-list')
         .then(res => res.json())
         .then(data => {

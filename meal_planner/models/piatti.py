@@ -1,5 +1,6 @@
 from . import get_db_connection
 
+# Recupera tutti i piatti validati o quelli creati dall'utente specificato
 def get_piatti(user_id):
     conn = get_db_connection()
     cursor = conn.cursor()
@@ -13,6 +14,7 @@ def get_piatti(user_id):
     conn.close()
     return piatti
 
+# Inserisce un nuovo piatto nel database
 def insert_piatto(nome, descrizione, utente_id=None, validato=1):
     conn = get_db_connection()
     cursor = conn.cursor()
@@ -26,6 +28,7 @@ def insert_piatto(nome, descrizione, utente_id=None, validato=1):
     conn.close()
     return piatto_id
 
+# Associa ingredienti a un piatto con le rispettive quantità
 def associa_ingredienti_al_piatto(piatto_id, ingredienti_quantita):
     # ingredienti_quantita: lista di tuple (ingrediente_id, quantita)
     conn = get_db_connection()

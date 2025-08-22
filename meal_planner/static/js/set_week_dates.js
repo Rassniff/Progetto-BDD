@@ -1,3 +1,4 @@
+// Imposta automaticamente le date della settimana corrente (Lun-Dom) nei campi di input
 window.addEventListener('DOMContentLoaded', function() {
   const today = new Date();
   const dayOfWeek = today.getDay() === 0 ? 7 : today.getDay(); // Domenica = 7

@@ -19,6 +19,7 @@ document.getElementById('stats-day-btn').onclick = function() {
     });
 };
 
+// Statistiche settimana selezionata
 document.getElementById('stats-week-btn').onclick = function() {
   const start = document.getElementById('stats-week-start').value;
   const end = document.getElementById('stats-week-end').value;
@@ -54,6 +55,7 @@ const weekdayMap = {
   'Domenica': 6
 };
 
+// Ottieni la data (YYYY-MM-DD) per il giorno della settimana corrente
 function getDateForWeekday(weekday) {
   const today = new Date();
   const startOfWeek = new Date(today);

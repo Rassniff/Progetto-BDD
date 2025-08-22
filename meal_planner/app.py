@@ -81,8 +81,8 @@ def add_to_planner():
         return jsonify({"success": False, "message": "Utente non autenticato"}), 401
 
     data = request.get_json()
-    giorno = data.get('giorno')   # es. 'Lun'
-    pasto = data.get('pasto')     # es. 'pranzo'
+    giorno = data.get('giorno')   
+    pasto = data.get('pasto')     
     piatto_id = data.get('piatto_id')
 
     if not (giorno and pasto and piatto_id):
@@ -134,7 +134,6 @@ def ingredienti_list():
     if 'user_id' not in session:
         return jsonify([])
     ingredienti = get_ingredienti(session['user_id'])
-    # Restituisci solo i campi utili
     return jsonify([
         {
             "id": ing[0],
