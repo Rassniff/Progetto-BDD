@@ -72,7 +72,7 @@ L’applicazione è sviluppata con **Python (Flask)** per il backend e **HTML, C
    .venv\Scripts\activate      # su Windows
    pip install -r requirements.txt
    
-4. Configura il database in config.py:
+3. Configura il database in config.py:
    
     ```bash
     DB_CONFIG = {
@@ -81,6 +81,8 @@ L’applicazione è sviluppata con **Python (Flask)** per il backend e **HTML, C
         'password': 'password',
         'database': 'meal_planner'
     }
+    
+ 4. Esegui lo script (`db/init_db.sql`) e (`db/planner_nutritional_view.sql`) in MySQL Workbench / Shell per inizializzare il database
 
 ### Avvia l’app
 
