@@ -84,8 +84,9 @@ def add_to_planner():
     giorno = data.get('giorno')   
     pasto = data.get('pasto')     
     piatto_id = data.get('piatto_id')
+    data_giorno = data.get('data')  # formato 'YYYY-MM-DD'
 
-    if not (giorno and pasto and piatto_id):
+    if not (giorno and pasto and piatto_id and data_giorno):
         return jsonify({"success": False, "message": "Dati incompleti"}), 400
 
     # Controlla che pasto sia valido per l'ENUM
@@ -94,21 +95,21 @@ def add_to_planner():
         return jsonify({"success": False, "message": "Pasto non valido"}), 400
 
     # Mappa giorno della settimana
-    weekday_map = {"Lun": 0, "Mar": 1, "Mer": 2, "Gio": 3, "Ven": 4, "Sab": 5, "Dom": 6}
-    if giorno not in weekday_map:
-        return jsonify({"success": False, "message": "Giorno non valido"}), 400
+    #weekday_map = {"Lun": 0, "Mar": 1, "Mer": 2, "Gio": 3, "Ven": 4, "Sab": 5, "Dom": 6}
+    #if giorno not in weekday_map:
+    #    return jsonify({"success": False, "message": "Giorno non valido"}), 400
 
     # Calcola la data del giorno corrente della settimana
-    today = datetime.today()
-    start_of_week = today - timedelta(days=today.weekday())  # Lunedì corrente
-    data_giorno = start_of_week + timedelta(days=weekday_map[giorno])
+    #today = datetime.today()
+    #start_of_week = today - timedelta(days=today.weekday())  # Lunedì corrente
+    #data_giorno = start_of_week + timedelta(days=weekday_map[giorno])
 
-    planner_id = add_or_update_planner(session['user_id'], data_giorno.date(), pasto, piatto_id)
+    planner_id = add_or_update_planner(session['user_id'], data_giorno, pasto, piatto_id)
 
     return jsonify({
         "success": True, 
         "message": "Piatto aggiunto al planner", 
-        "data_giorno": str(data_giorno.date()),
+        "data_giorno": str(data_giorno),
         "planner_id": planner_id,
         "piatto_id": piatto_id
     })

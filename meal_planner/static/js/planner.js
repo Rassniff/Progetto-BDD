@@ -102,7 +102,8 @@ function handleDrop(e) {
     body: JSON.stringify({
       giorno: giorno,
       pasto: pasto,
-      piatto_id: draggedPiattoId
+      piatto_id: draggedPiattoId,
+      data: dataStr
     })
   })
   .then(response => response.json())
